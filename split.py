@@ -8,26 +8,26 @@ import os
 from collections import deque
 import json
 from datetime import datetime
+import argparse
 
 class AudioSplitter:
-    def __init__(self):
+    def __init__(self, silence_threshold=500, min_keystroke_gap=0.1, output_dir="split_audio", log_file="keystroke_log.json"):
         self.FORMAT = pyaudio.paInt16
         self.CHANNELS = 1
         self.RATE = 44100
         self.CHUNK = 1024
-        self.SILENCE_THRESHOLD = 500  
-        self.MIN_KEYSTROKE_GAP = 0.1 
-        # Runtime variables
+        self.SILENCE_THRESHOLD = silence_threshold
+        self.MIN_KEYSTROKE_GAP = min_keystroke_gap
+
         self.audio = pyaudio.PyAudio()
         self.frames = []
         self.is_recording = False
         self.stop_event = Event()
         self.keystroke_times = []
         self.actual_keystrokes = []
-        self.output_dir = "split_audio"
-        self.log_file = "keystroke_log.json"
+        self.output_dir = output_dir
+        self.log_file = log_file
         
-       
         self.amplitude_window = deque(maxlen=5)
         self.last_keystroke_time = 0
 
@@ -40,14 +40,11 @@ class AudioSplitter:
             current_amplitude = np.abs(audio_data).mean()
             self.amplitude_window.append(current_amplitude)
             
-            # Detect keystroke by amplitude spike
             if (len(self.amplitude_window) == self.amplitude_window.maxlen and 
                 current_amplitude > self.SILENCE_THRESHOLD and
                 (time.time() - self.last_keystroke_time) > self.MIN_KEYSTROKE_GAP):
-                
                 self.last_keystroke_time = time.time()
-                self.keystroke_times.append(len(self.frames) - 1)  # Store frame index
-                
+                self.keystroke_times.append(len(self.frames) - 1)
         return (in_data, pyaudio.paContinue)
 
     def start_recording(self):
@@ -82,10 +79,7 @@ class AudioSplitter:
         if not self.keystroke_times:
             print("No keystrokes detected")
             return
-            
-        # Add beginning and end points
         split_points = [0] + self.keystroke_times + [len(self.frames)]
-        
         for i in range(1, len(split_points)):
             start = split_points[i-1]
             end = split_points[i]
@@ -101,7 +95,6 @@ class AudioSplitter:
                 'time': timestamp,
                 'frame_index': len(self.frames) if self.is_recording else None
             })
-            # Save log periodically 
             if len(self.actual_keystrokes) % 5 == 0:
                 self.save_keystroke_log()
 
@@ -120,32 +113,35 @@ class AudioSplitter:
         print(f"Amplitude threshold: {self.SILENCE_THRESHOLD}")
         print("Press ESC to stop and split by detected keystrokes")
         
-        # Start key monitoring thread
         key_thread = Thread(target=self.monitor_keys)
         key_thread.start()
-        
-        # Start recording
         self.start_recording()
-        
-        # Wait for ESC key to stop
         keyboard.wait('esc')
-        
-        # Clean up
         self.stop_event.set()
         self.stop_recording()
         key_thread.join()
-        
-        # Process and save
         print(f"\nDetected {len(self.keystroke_times)} keystrokes by amplitude")
         self.split_by_keystrokes()
         self.save_keystroke_log()
-        
         print(f"\nActual keystrokes logged to {self.log_file}")
-        print("Audio segments saved to 'split_audio' directory")
+        print(f"Audio segments saved to '{self.output_dir}' directory")
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Audio Splitter Configuration")
+    parser.add_argument("--silence-threshold", type=int, default=500, help="Amplitude threshold for silence detection")
+    parser.add_argument("--keystroke-gap", type=float, default=0.1, help="Minimum time gap between keystrokes in seconds")
+    parser.add_argument("--output-dir", type=str, default="split_audio", help="Directory to save audio segments")
+    parser.add_argument("--log-file", type=str, default="keystroke_log.json", help="File to save keystroke logs")
+
+    args = parser.parse_args()
+
     try:
-        splitter = AudioSplitter()
+        splitter = AudioSplitter(
+            silence_threshold=args.silence_threshold,
+            min_keystroke_gap=args.keystroke_gap,
+            output_dir=args.output_dir,
+            log_file=args.log_file
+        )
         splitter.run()
     except Exception as e:
         print(f"Error: {e}")
