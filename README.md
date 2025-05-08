@@ -31,7 +31,7 @@ keyboard
 Install dependencies:
 
 
-pip install pyaudio numpy keyboard
+pip install requirements.txt
 ⚠️ On some systems, keyboard may require administrator/root privileges.
 
 🔧 Installation
