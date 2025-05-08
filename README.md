@@ -1,4 +1,5 @@
-#🎙️ Audio Splitter
+# 🎙️ Audio Splitter
+
 A Python tool that records audio from your microphone and automatically splits it into segments based on detected keystrokes, using amplitude spikes and actual keypress logging. Ideal for scenarios like acoustic keystroke recognition, biometric research, and sound-based interaction logging.
 
 📌 Description
