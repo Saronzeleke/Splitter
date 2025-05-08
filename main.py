@@ -109,7 +109,12 @@ class AudioSplitter:
         keyboard.unhook_all()
 
     def run(self):
-        print("Enhanced Audio Splitter - Now recording...")
+        
+        
+        
+        
+        
+        
         print(f"Amplitude threshold: {self.SILENCE_THRESHOLD}")
         print("Press ESC to stop and split by detected keystrokes")
         
