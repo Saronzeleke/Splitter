@@ -1,71 +1,98 @@
-# Audio Splitter
-Description
-The Audio Splitter is a Python-based tool that allows you to record audio and automatically split it into multiple segments based on keystrokes detected during the recording process. The program uses a combination of audio amplitude detection and keyboard input events to segment the audio and save it into individual .wav files.
+🎙️ Audio Splitter
+A Python tool that records audio from your microphone and automatically splits it into segments based on detected keystrokes, using amplitude spikes and actual keypress logging. Ideal for scenarios like acoustic keystroke recognition, biometric research, and sound-based interaction logging.
 
-This tool is ideal for applications where audio needs to be split around specific user interactions, such as transcription, lecture recordings, or podcasts.
+📌 Description
+This script captures live microphone input, detects keystrokes based on audio amplitude spikes, logs actual keypresses using the keyboard module, and splits the audio into multiple .wav files for each detected segment.
 
-# Features
-Records audio in real-time.
+🚀 Features
+🔴 Real-time audio recording
 
-Detects keystrokes based on audio amplitude spikes.
+🎯 Detects keystrokes based on amplitude spikes
 
-Automatically splits the audio file at detected keystrokes.
+🪓 Automatically splits audio at keystroke points
 
-Saves split audio segments into .wav files.
+💾 Saves each segment as a separate .wav file
 
-Logs actual keystrokes (if desired) in a JSON file.
+🧾 Logs actual keyboard keypresses in a .json file
 
-# Requirements
-Python 3.x
+🛠 Customizable thresholds and directories via command-line arguments
 
-pyaudio library for audio input and output.
+📦 Requirements
+Python 3.8+
 
-keyboard library for capturing keyboard events.
+Libraries:
 
-numpy for processing audio data.
+pyaudio
 
-You can install the required libraries using the following command:
+numpy
 
+keyboard
 
+Install dependencies:
 
-pip install pyaudio keyboard numpy
-Installation
-Clone this repository to your local machine:
+bash
+Copy
+Edit
+pip install pyaudio numpy keyboard
+⚠️ On some systems, keyboard may require administrator/root privileges.
 
+🔧 Installation
+Clone the repository:
 
-
+bash
+Copy
+Edit
 git clone https://github.com/Saronzeleke/Splitter.git
-Navigate to the project directory:
-
-
 cd Splitter
-Install the required dependencies:
+Install dependencies (if requirements.txt is available):
 
-
+bash
+Copy
+Edit
 pip install -r requirements.txt
-# Usage
-Run the script by executing:
+▶️ Usage
+Run the script:
 
+bash
+Copy
+Edit
+python main.py
+This starts:
 
-python split.py
-The program will begin recording audio and monitoring your keyboard for keystrokes.
+Audio recording from your microphone
 
-** When the program detects a significant change in the audio amplitude (which could indicate a keystroke), it logs the time and location of the keystroke.
+Keystroke detection (via amplitude and actual keypresses)
 
-Press the ESC key to stop the recording process. The program will then split the audio file based on the detected keystrokes and save each segment into the split_audio directory.
+Press ESC to stop recording. After stopping:
 
-The program will also log the actual keystrokes detected in the keystroke_log.json file.
+The script splits the audio into chunks
 
-# Command-Line Options
-The script does not currently accept any command-line arguments. It runs automatically upon execution, starting both the audio recording and keystroke detection.
+Saves each chunk as a .wav file in the split_audio/ folder
 
-# Files Generated
-Audio segments: Split audio segments are saved in the split_audio folder as .wav files.
+Writes keystroke logs to keystroke_log.json
 
-Keystroke Log: A JSON file (keystroke_log.json) that records the keystrokes detected during the session, along with timestamps and frame indices.
+⚙️ Command-Line Arguments
+You can customize behavior using the following options:
 
-Example Output
+bash
+Copy
+Edit
+python main.py --silence-threshold 600 --keystroke-gap 0.2 --output-dir output --log-file mylog.json
+Argument	Description	Default
+--silence-threshold	Amplitude level above which audio is considered a keystroke	500
+--keystroke-gap	Minimum time (in seconds) between two keystroke detections	0.1
+--output-dir	Directory where split audio files are saved	split_audio
+--log-file	File to store actual keyboard events with timestamps	keystroke_log.json
 
+📂 Output Files
+🎧 split_audio/segment_1.wav, segment_2.wav, ...
+
+🧾 keystroke_log.json: Contains keypress event info (key name, timestamp, frame index)
+
+🧪 Example Output
+vbnet
+Copy
+Edit
 Recording started... Press ESC to stop.
 Detected 5 keystrokes by amplitude
 Saved segment_1.wav (frames 0-1024)
@@ -73,17 +100,27 @@ Saved segment_2.wav (frames 1024-2048)
 ...
 Keystroke log saved to keystroke_log.json
 Audio segments saved to 'split_audio' directory
-# Notes
-The program uses an amplitude threshold (SILENCE_THRESHOLD = 500) to detect keystrokes. This threshold can be adjusted based on the sensitivity required for your environment.
+📝 Notes
+The amplitude threshold (--silence-threshold) determines how sensitive the keystroke detection is.
 
-The program listens for keyboard events and logs actual keystrokes during the recording session. This log is saved in keystroke_log.json.
+Frame-based splitting ensures timing alignment between actual and amplitude-based keystrokes.
 
-# Troubleshooting
-If you encounter an issue where the program doesn't detect keystrokes properly, try adjusting the SILENCE_THRESHOLD value in the script.
+All audio is saved in 16-bit PCM WAV format.
 
-Ensure that the necessary libraries (pyaudio, keyboard, numpy) are properly installed.
+🛠 Troubleshooting
+No keystrokes detected?
 
-# License
-This project is licensed under the MIT License - see the LICENSE file for details.
+Lower the --silence-threshold (e.g. 400)
 
-Copyright (c) 2025 Saron Zeleke
+Keystrokes logged incorrectly?
+
+Check for background noise or adjust --keystroke-gap
+
+Permission error with keyboard logging?
+
+Run as administrator (Windows) or use sudo (Linux)
+
+📜 License
+This project is licensed under the MIT License.
+© 2025 Saron Zeleke
+
