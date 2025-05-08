@@ -30,32 +30,24 @@ keyboard
 
 Install dependencies:
 
-bash
-Copy
-Edit
+
 pip install pyaudio numpy keyboard
 ⚠️ On some systems, keyboard may require administrator/root privileges.
 
 🔧 Installation
 Clone the repository:
 
-bash
-Copy
-Edit
-git clone https://github.com/Saronzeleke/Splitter.git
-cd Splitter
-Install dependencies (if requirements.txt is available):
 
-bash
-Copy
-Edit
+git clone https://github.com/Saronzeleke/Splitter.git
+
+Install dependencies :
+
+
 pip install -r requirements.txt
 ▶️ Usage
 Run the script:
 
-bash
-Copy
-Edit
+
 python main.py
 This starts:
 
