@@ -11,7 +11,7 @@ from datetime import datetime
 import argparse
 
 class AudioSplitter:
-    def __init__(self, silence_threshold=500, min_keystroke_gap=0.1, output_dir="split_audio", log_file="keystroke_log.json"):
+    def __init__(self, silence_threshold=500, min_keystroke_gap=0.1, output_dir="split-audio", log_file="keystroke-log.json"):
         self.FORMAT = pyaudio.paInt16
         self.CHANNELS = 1
         self.RATE = 44100
