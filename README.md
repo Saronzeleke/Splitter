@@ -2,7 +2,8 @@
 
 A Python tool that records audio from your microphone and automatically splits it into segments based on detected keystrokes, using amplitude spikes and actual keypress logging. Ideal for scenarios like acoustic keystroke recognition, biometric research, and sound-based interaction logging.
 
-📌 Description
+# 📌 Description
+
 This script captures live microphone input, detects keystrokes based on audio amplitude spikes, logs actual keypresses using the keyboard module, and splits the audio into multiple .wav files for each detected segment.
 
 # 🚀 Features
