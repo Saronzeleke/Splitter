@@ -145,6 +145,4 @@ if __name__ == "__main__":
         splitter.run()
     except Exception as e:
         print(f"Error: {e}")
-    finally:
-        if 'splitter' in locals():
-            splitter.stop_event.set()
+    
