@@ -59,11 +59,15 @@ Want to try it instantly in your browser? Run the project on Google Colab withou
 You can customize behavior using the following options:
 
 python main.py --silence-threshold 600 --keystroke-gap 0.2 --output-dir output --log-file mylog.json
-Argument	Description	Default
---silence-threshold	Amplitude level above which audio is considered a keystroke	500
---keystroke-gap	Minimum time (in seconds) between two keystroke detections	0.1
---output-dir	Directory where split audio files are saved	split_audio
---log-file	File to store actual keyboard events with timestamps	keystroke_log.json
+
+
+| Argument              | Description                                                 | Default             |
+| --------------------- | ----------------------------------------------------------- | ------------------- |
+| `--silence-threshold` | Amplitude level above which audio is considered a keystroke | 500                 |
+| `--keystroke-gap`     | Minimum time (in seconds) between two keystroke detections  | 0.1                 |
+| `--output-dir`        | Directory where split audio files are saved                 | split\_audio        |
+| `--log-file`          | File to store actual keyboard events with timestamps        | keystroke\_log.json |
+
 
 # 📂 Output Files
 🎧 split_audio/segment_1.wav, segment_2.wav, ...
