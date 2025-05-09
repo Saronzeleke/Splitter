@@ -15,7 +15,7 @@ class AudioSplitter:
         self.FORMAT = pyaudio.paInt16
         self.CHANNELS = 1
         self.RATE = 44100
-        self.CHUNK = 1024
+        self.CHUNK = 1024 
         self.SILENCE_THRESHOLD = silence_threshold
         self.MIN_KEYSTROKE_GAP = min_keystroke_gap
 
