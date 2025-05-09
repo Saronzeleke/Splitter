@@ -55,6 +55,7 @@ Saves each chunk as a .wav file in the split_audio/ folder
 Writes keystroke logs to keystroke_log.json
 # 🚀 Run in Google Colab
 Want to try it instantly in your browser? Run the project on Google Colab without installing anything:
+https://colab.research.google.com/drive/1cf8a-xsirOh6HlZ7CTifMl46j7tglj1K#scrollTo=wfoGmGqqvhZh
 # ⚙️ Command-Line Arguments
 You can customize behavior using the following options:
 
