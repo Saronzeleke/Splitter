@@ -20,6 +20,7 @@ This script captures live microphone input, detects keystrokes based on audio am
 🛠 Customizable thresholds and directories via command-line arguments
 # 🎥 Demo Video
 See the tool in action in this short demo:
+https://github.com/Saronzeleke/Splitter/blob/main/split.mp4
 # 📦 Requirements
 Python 3.8+
 
