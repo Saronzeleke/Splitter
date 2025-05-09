@@ -136,6 +136,7 @@ if __name__ == "__main__":
 
     try:
         splitter = AudioSplitter(
+            
             silence_threshold=args.silence_threshold,
             min_keystroke_gap=args.keystroke_gap,
             output_dir=args.output_dir,
