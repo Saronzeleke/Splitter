@@ -95,7 +95,7 @@ class AudioSplitter:
                 'time': timestamp,
                 'frame_index': len(self.frames) if self.is_recording else None
             })
-            if len(self.actual_keystrokes) % 5 == 0:
+            if len(self.actual_keystrokes) % 5 == 0: 
                 self.save_keystroke_log()
 
     def save_keystroke_log(self):
