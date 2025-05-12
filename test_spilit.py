@@ -7,7 +7,6 @@ from datetime import datetime
 import argparse
 
 def load_audio(file_path, sample_rate=44100):
-    """Load a WAV file and ensure mono and correct sample rate."""
     audio, sr = librosa.load(file_path, sr=sample_rate, mono=True)
     return audio, sr
 
