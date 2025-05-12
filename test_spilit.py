@@ -64,7 +64,7 @@ def save_keystroke_log(keystrokes, log_file):
     with open(log_file, 'w') as f:
         json.dump(keystrokes, f, indent=2)
 
-def process_audio_file(input_file, amplitude_threshold=0.015, min_keystroke_gap=0.1, output_dir="split_audio_test", log_file="keystroke_log.json"):
+def process_audio_file(input_file, amplitude_threshold=0.015, min_keystroke_gap=0.1, output_dir="split_audio_test", log_file="keystroke_log_1.json"):
     """Main function to process a WAV file for keystroke detection and segmentation."""
     print(f"Processing audio file: {input_file}")
     print(f"Amplitude threshold: {amplitude_threshold}, Min keystroke gap: {min_keystroke_gap}s")
