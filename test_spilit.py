@@ -6,6 +6,7 @@ import json
 from datetime import datetime
 import argparse
 import traceback
+# import matplotlib.pyplot as plt  # Uncomment if you want to visualize energy
 
 def load_audio(file_path, sample_rate=44100):
     print(f"Loading audio from {file_path}")
@@ -21,12 +22,6 @@ def load_audio(file_path, sample_rate=44100):
 def detect_keystrokes(audio, sample_rate, amplitude_threshold=0.005, min_gap=0.05, window_size=0.02):
     print("Detecting peaks...")
     try:
-        max_amplitude = np.max(np.abs(audio))
-        if max_amplitude == 0:
-            print("Warning: Audio has zero amplitude")
-            return [], []
-        threshold = amplitude_threshold * 32768 / max_amplitude
-        print(f"Computed threshold: {threshold:.6f}")
         energy = np.abs(audio) ** 2
         window_samples = int(window_size * sample_rate)
         min_gap_samples = int(min_gap * sample_rate)
@@ -34,10 +29,16 @@ def detect_keystrokes(audio, sample_rate, amplitude_threshold=0.005, min_gap=0.0
         print(f"Min gap: {min_gap_samples} samples ({min_gap}s)")
         print(f"Max energy: {np.max(energy):.6f}, Mean energy: {np.mean(energy):.6f}")
 
+        # Optional debug plot
+        # plt.plot(energy)
+        # plt.title("Energy over time")
+        # plt.show()
+
         peaks = []
         last_peak = -min_gap_samples
+
         for i in range(window_samples, len(audio) - window_samples):
-            if (energy[i] > threshold and
+            if (energy[i] > amplitude_threshold and
                 i - last_peak > min_gap_samples and
                 energy[i] == max(energy[i - window_samples:i + window_samples])):
                 peaks.append(i)
@@ -47,7 +48,7 @@ def detect_keystrokes(audio, sample_rate, amplitude_threshold=0.005, min_gap=0.0
         keystrokes = [
             {
                 'sample_index': peak,
-                'time': datetime.fromtimestamp(peak / sample_rate).isoformat(),
+                'time': str(round(peak / sample_rate, 3)) + "s",
                 'amplitude': float(np.abs(audio[peak]))
             }
             for peak in peaks
