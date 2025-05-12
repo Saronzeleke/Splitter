@@ -76,7 +76,7 @@ def process_audio_file(input_file, amplitude_threshold=0.015, min_keystroke_gap=
     audio, sample_rate = load_audio(input_file)
     print(f"Loaded audio: {len(audio)} samples, {len(audio)/sample_rate:.2f}s, {sample_rate} Hz")
 
-    # Detect keystrokes
+  
     peaks, keystrokes = detect_keystrokes(audio, sample_rate, amplitude_threshold, min_keystroke_gap)
     print(f"Detected {len(peaks)} keystrokes")
 
@@ -84,7 +84,6 @@ def process_audio_file(input_file, amplitude_threshold=0.015, min_keystroke_gap=
     segments = split_audio(audio, sample_rate, peaks, output_dir)
     print(f"Saved {len(segments)} audio segments")
 
-    # Save keystroke log
     save_keystroke_log(keystrokes, log_file)
     print(f"Keystroke log saved to {log_file}")
 
