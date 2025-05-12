@@ -30,7 +30,7 @@ def detect_keystrokes(audio, sample_rate, amplitude_threshold=0.015, min_gap=0.1
             peaks.append(i)
             last_peak = i
 
-    # Convert peaks to time and frame indices
+  
     keystrokes = [
         {
             'sample_index': peak,
