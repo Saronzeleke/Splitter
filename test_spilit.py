@@ -40,7 +40,7 @@ def detect_keystrokes(audio, sample_rate, amplitude_threshold=0.015, min_gap=0.1
     return peaks, keystrokes
 
 def split_audio(audio, sample_rate, peaks, output_dir, min_segment_duration=0.05):
-    """Split audio into segments around detected keystrokes."""
+  
     os.makedirs(output_dir, exist_ok=True)
     segments = []
     min_samples = int(min_segment_duration * sample_rate)
