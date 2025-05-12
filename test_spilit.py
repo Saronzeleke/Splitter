@@ -29,11 +29,7 @@ def detect_keystrokes(audio, sample_rate, amplitude_threshold=0.005, min_gap=0.0
         print(f"Min gap: {min_gap_samples} samples ({min_gap}s)")
         print(f"Max energy: {np.max(energy):.6f}, Mean energy: {np.mean(energy):.6f}")
 
-        # Optional debug plot
-        # plt.plot(energy)
-        # plt.title("Energy over time")
-        # plt.show()
-
+      
         peaks = []
         last_peak = -min_gap_samples
 
