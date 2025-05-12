@@ -6,7 +6,7 @@ import json
 from datetime import datetime
 import argparse
 import traceback
-# import matplotlib.pyplot as plt  # Uncomment if you want to visualize energy
+
 
 def load_audio(file_path, sample_rate=44100):
     print(f"Loading audio from {file_path}")
