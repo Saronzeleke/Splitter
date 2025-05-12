@@ -21,7 +21,7 @@ def detect_keystrokes(audio, sample_rate, amplitude_threshold=0.015, min_gap=0.1
     window_samples = int(window_size * sample_rate)
     min_gap_samples = int(min_gap * sample_rate)
 
-    # Find peaks in energy
+  
     peaks = []
     last_peak = -min_gap_samples
     for i in range(window_samples, len(audio) - window_samples):
