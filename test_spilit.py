@@ -64,7 +64,7 @@ def save_keystroke_log(keystrokes, log_file):
     with open(log_file, 'w') as f:
         json.dump(keystrokes, f, indent=2)
 
-def process_audio_file(input_file, amplitude_threshold=0.015, min_keystroke_gap=0.1, output_dir="split_audio", log_file="keystroke_log.json"):
+def process_audio_file(input_file, amplitude_threshold=0.015, min_keystroke_gap=0.1, output_dir="split_audio_test", log_file="keystroke_log.json"):
     """Main function to process a WAV file for keystroke detection and segmentation."""
     print(f"Processing audio file: {input_file}")
     print(f"Amplitude threshold: {amplitude_threshold}, Min keystroke gap: {min_keystroke_gap}s")
@@ -86,7 +86,7 @@ def process_audio_file(input_file, amplitude_threshold=0.015, min_keystroke_gap=
     print(f"Keystroke log saved to {log_file}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Process a WAV file for keystroke detection and segmentation")
+    parser = argparse.ArgumentParser(description="Test a WAV file for keystroke detection and segmentation")
     parser.add_argument("--input-file", type=str, required=True, help="Path to the input WAV file")
     parser.add_argument("--amplitude-threshold", type=float, default=0.015, help="Amplitude threshold for keystroke detection (normalized)")
     parser.add_argument("--min-keystroke-gap", type=float, default=0.1, help="Minimum time gap between keystrokes (seconds)")
