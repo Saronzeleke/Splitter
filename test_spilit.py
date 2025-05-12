@@ -13,7 +13,7 @@ def load_audio(file_path, sample_rate=44100):
 
 def detect_keystrokes(audio, sample_rate, amplitude_threshold=0.015, min_gap=0.1, window_size=0.05):
     """Detect keystrokes based on amplitude peaks."""
-    # Convert amplitude threshold to normalized scale (librosa audio is [-1, 1])
+   
     threshold = amplitude_threshold * 32768 / np.max(np.abs(audio))  # Relative to audio's max amplitude
     # Compute short-term energy (square of amplitude) for peak detection
     energy = np.abs(audio) ** 2
