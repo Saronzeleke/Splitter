@@ -47,7 +47,7 @@ def split_audio(audio, sample_rate, peaks, output_dir, min_segment_duration=0.05
     segments = []
     min_samples = int(min_segment_duration * sample_rate)
 
-    # Add boundaries (start, peaks, end)
+    
     split_points = [0] + peaks + [len(audio)]
     for i in range(1, len(split_points)):
         start = max(0, split_points[i - 1] - min_samples // 2)
@@ -72,7 +72,7 @@ def process_audio_file(input_file, amplitude_threshold=0.015, min_keystroke_gap=
     print(f"Amplitude threshold: {amplitude_threshold}, Min keystroke gap: {min_keystroke_gap}s")
     print(f"Output directory: {output_dir}")
 
-    # Load audio
+    
     audio, sample_rate = load_audio(input_file)
     print(f"Loaded audio: {len(audio)} samples, {len(audio)/sample_rate:.2f}s, {sample_rate} Hz")
 
