@@ -11,7 +11,6 @@ def load_audio(file_path, sample_rate=44100):
     return audio, sr
 
 def detect_keystrokes(audio, sample_rate, amplitude_threshold=0.015, min_gap=0.1, window_size=0.05):
-    """Detect keystrokes based on amplitude peaks."""
    
     threshold = amplitude_threshold * 32768 / np.max(np.abs(audio))  
     energy = np.abs(audio) ** 2
