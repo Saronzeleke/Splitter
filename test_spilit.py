@@ -60,7 +60,6 @@ def split_audio(audio, sample_rate, peaks, output_dir, min_segment_duration=0.05
     return segments
 
 def save_keystroke_log(keystrokes, log_file):
-    """Save detected keystrokes to a JSON file."""
     with open(log_file, 'w') as f:
         json.dump(keystrokes, f, indent=2)
 
