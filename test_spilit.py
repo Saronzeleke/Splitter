@@ -90,7 +90,7 @@ def save_keystroke_log(keystrokes, log_file):
         raise
 
 def process_audio_file(input_file, amplitude_threshold=0.005, min_keystroke_gap=0.05, output_dir="split_audio_test", log_file="keystroke_log_1.json"):
-    print(f"Processing audio file: {input_file}")
+    print(f"Processing input file: {input_file}")
     print(f"Amplitude threshold: {amplitude_threshold}, Min keystroke gap: {min_keystroke_gap}s")
     print(f"Output directory: {output_dir}")
 
