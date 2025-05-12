@@ -104,7 +104,7 @@ if __name__ == "__main__":
     parser.add_argument("--input-file", type=str, required=True)
     parser.add_argument("--amplitude-threshold", type=float, default=0.005)
     parser.add_argument("--min-keystroke-gap", type=float, default=0.05)
-    parser.add_argument("--output-dir", type=str, default="split_audio_test", help="Directory to save audio segments")
+    parser.add_argument("--output-dir", type=str, default="split_audio_test")
     parser.add_argument("--log-file", type=str, default="keystroke_log_1.json", help="File to save keystroke logs")
 
     args = parser.parse_args()
