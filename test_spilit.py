@@ -102,7 +102,7 @@ def process_audio_file(input_file, amplitude_threshold=0.005, min_keystroke_gap=
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Test a WAV file for keystroke detection and segmentation")
     parser.add_argument("--input-file", type=str, required=True)
-    parser.add_argument("--amplitude-threshold", type=float, default=0.005, help="Amplitude threshold for detection (normalized)")
+    parser.add_argument("--amplitude-threshold", type=float, default=0.005)
     parser.add_argument("--min-keystroke-gap", type=float, default=0.05, help="Minimum time gap between detections (seconds)")
     parser.add_argument("--output-dir", type=str, default="split_audio_test", help="Directory to save audio segments")
     parser.add_argument("--log-file", type=str, default="keystroke_log_1.json", help="File to save keystroke logs")
