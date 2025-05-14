@@ -2,7 +2,7 @@ import pyaudio
 import wave
 import numpy as np
 import keyboard
-from threading import Thread, Event
+from threading import Thread, Event 
 import time
 import os
 from collections import deque
